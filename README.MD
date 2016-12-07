@@ -1,7 +1,7 @@
 Static Website Example
 ----------------------
 
-To be used in conjunction to Cloud Academy labs.
+To be used with Cloud Academy labs.
 
 
 License

@@ -14,6 +14,8 @@ All of the site templates I create for [HTML5 UP](https://html5up.net/) are lice
  - Use them for personal stuff
  - Use them for commercial stuff
  - Change them however you like
+
+
 ... all for free, yo. In exchange, just give HTML5 UP credit for the design and tell your friends about it :)
 
 More info [here](https://html5up.net/license).

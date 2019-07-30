@@ -12,7 +12,7 @@ pipeline
 			}
 		}
 		
-		stage('CheckOut latest Code')
+		stage('Checkout latest Code')
 		{
 			checkout scm
 		}

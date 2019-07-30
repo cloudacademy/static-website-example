@@ -2,6 +2,7 @@
 def dockerImageRepo = 'anandtest/protest'
 def dockerImageTag
 def dockerImage
+def dockerRegistry = 'hub.docker.com'
 
 pipeline
 {
@@ -40,6 +41,19 @@ pipeline
 					sh 'docker images'
 					sh 'docker ps -a'
 					echo "$dockerImage"
+				}
+			}
+		}
+		
+		stage('Publish Docker Images to DockerHub')
+		{
+			steps
+			{
+				echo "Pushing Docker image to Registory"
+				script
+				{
+					sh 'docker login --username="anandgit71" --password="anandgit12" ${dockerRegistry}'
+					dockerImage.push()
 				}
 			}
 		}

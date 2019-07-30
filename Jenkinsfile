@@ -38,7 +38,7 @@ pipeline
 				script 
 				{
 					echo 'Starting the Image Building'
-					dockerImage = docker.build "${dockerImageRepo}:${dockerImageTag}"
+					dockerImage = docker.build "${dockerImageRepo}"
 					sh 'docker images'
 					sh 'docker ps -a'
 					echo "$dockerImage"
@@ -65,7 +65,7 @@ pipeline
 			{
 				script
 				{
-					sh '''ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${dockerImageTag}" --key-file /tmp/private.pem'''
+					sh '''ansible-playbook remote-deploy.yml --key-file /tmp/private.pem'''
 				}
 			}
 		}

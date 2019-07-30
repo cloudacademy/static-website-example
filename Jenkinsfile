@@ -2,7 +2,7 @@
 def dockerImageRepo = 'anandtest/protest'
 def dockerImageTag
 def dockerImage
-TagId = $BUILD_NUMBER
+TagId = env.BUILD_NUMBER
 def dockerRegistry = 'hub.docker.com'
 
 pipeline

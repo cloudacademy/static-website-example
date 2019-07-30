@@ -14,7 +14,10 @@ pipeline
 		
 		stage('CheckOut latest Code')
 		{
-			checkout scm
+			steps
+			{
+				checkout scm
+			}
 		}
 	}
 }

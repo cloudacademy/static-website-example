@@ -2,6 +2,7 @@
 def dockerImageRepo = 'anandtest/protest'
 def dockerImageTag
 def dockerImage
+TagId = $BUILD_NUMBER
 def dockerRegistry = 'hub.docker.com'
 
 pipeline
@@ -15,6 +16,7 @@ pipeline
 			{
 				deleteDir()
 				echo 'Cleanup Done'
+				echo 'the build id is ${TagId}'
 			}
 		}
 		

@@ -11,8 +11,8 @@
    - name: Remove Docker Image
      shell: docker rmi -f $(docker images |grep 'anandtest/protest'|awk '{print $3}')
 
-   - name: pull the latest image
-     shell: docker pull anandtest/protest:{{ TagId }}
+ #  - name: pull the latest image
+ #    shell: docker pull anandtest/protest:{{ TagId }}
 
    - name: Create a Docker Container from Image
      shell: docker run -t -d -p 80:80 --name=website anandtest/protest:{{ TagId }}

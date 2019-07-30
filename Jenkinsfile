@@ -2,7 +2,7 @@
 def dockerImageRepo = 'anandtest/protest'
 def dockerImageTag
 def dockerImage
-TagId = env.BUILD_NUMBER
+def TagId
 def dockerRegistry = 'hub.docker.com'
 
 pipeline
@@ -65,6 +65,8 @@ pipeline
 			steps
 			{
 				echo "the build number is ${dockerImageTag}"
+				TagId = ${dockerImageTag}
+				echo "the build number is ${TagId}"
 				script
 				{
 					sh 'ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${dockerImageTag}" --key-file /tmp/private.pem'

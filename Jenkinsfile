@@ -67,7 +67,9 @@ pipeline
 			{
 				script
 				{
-					sh 'ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${currentBuild.number}" --key-file /tmp/private.pem'
+					TagId = ${currentBuild.number}
+					echo ' tha build number is ${TagId}'
+					sh 'ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${TagId}" --key-file /tmp/private.pem'
 				}
 			}
 		}

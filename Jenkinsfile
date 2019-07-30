@@ -2,7 +2,6 @@
 def dockerImageRepo = 'anandtest/protest'
 def dockerImageTag
 def dockerImage
-def TagId
 def dockerRegistry = 'hub.docker.com'
 
 pipeline
@@ -17,7 +16,6 @@ pipeline
 				deleteDir()
 				echo "the build number is ${currentBuild.number}"
 				echo 'Cleanup Done'
-				echo 'the build id is ${TagId}'
 			}
 		}
 		
@@ -67,9 +65,7 @@ pipeline
 			{
 				script
 				{
-					TagId = currentBuild.number
-					echo ' tha build number is ${TagId}'
-					sh 'ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${TagId}" --key-file /tmp/private.pem'
+					sh '''ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${dockerImageTag}" --key-file /tmp/private.pem'''
 				}
 			}
 		}

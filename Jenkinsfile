@@ -15,6 +15,7 @@ pipeline
 			steps
 			{
 				deleteDir()
+				echo "the build number is ${currentBuild.number}"
 				echo 'Cleanup Done'
 				echo 'the build id is ${TagId}'
 			}
@@ -64,9 +65,6 @@ pipeline
 		{
 			steps
 			{
-				echo "the build number is ${dockerImageTag}"
-				TagId = ${dockerImageTag}
-				echo "the build number is ${TagId}"
 				script
 				{
 					sh 'ansible-playbook remote-deploy.yml --extra-vars "dockerImageTag=${dockerImageTag}" --key-file /tmp/private.pem'

@@ -63,7 +63,7 @@ pipeline
 			{
 				script
 				{
-				    sh 'ansible-playbook remote-deploy.yml'
+				    sh 'ansible-playbook remote-deploy.yml --key-file /tmp/private.pem '
 				}
 			}
 		}

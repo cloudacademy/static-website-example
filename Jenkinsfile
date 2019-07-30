@@ -55,6 +55,8 @@ pipeline
 				{
 					sh 'docker login --username="anandgit71" --password="anandgit12" ${dockerRegistry}'
 					dockerImage.push()
+					sh 'docker rmi $(docker images -a -q)'
+					sh 'docker images'
 				}
 			}
 		}

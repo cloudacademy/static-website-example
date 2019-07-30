@@ -11,5 +11,10 @@ pipeline
 				echo 'Cleanup Done'
 			}
 		}
+		
+		stage('CheckOut latest Code')
+		{
+			checkout scm
+		}
 	}
 }

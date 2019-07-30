@@ -57,5 +57,16 @@ pipeline
 				}
 			}
 		}
+		
+		stage('Remote Deployment')
+		{
+			steps
+			{
+				script
+				{
+					sh 'ansible-playbook remote-deploy.yml --extra-vars "TagId=${dockerImageTag}"'
+				}
+			}
+		}
 	}
 }

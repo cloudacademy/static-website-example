@@ -57,13 +57,14 @@ pipeline
 				}
 			}
 		}
-		stage('Remove the Old Image and Containers')
+		
+		stage('Remote Deployment')
 		{
 			steps
 			{
 				script
 				{
-				    sh 'ansible-playbook remote-deploy.yml --key-file /tmp/private.pem '
+					sh 'ansible-playbook remote-deploy.yml --extra-vars="TagId=$dockerImageTag" --key-file /tmp/private.pem'
 				}
 			}
 		}

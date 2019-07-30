@@ -1,3 +1,8 @@
+Note
+----------------
+sudo usermod -a -G docker jenkins
+Reboot after this
+
 Static Website Example
 ----------------------
 

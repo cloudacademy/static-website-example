@@ -66,9 +66,8 @@ pipeline
 
 		post {
         always {
-            script { 
-                	sh 'docker rmi -f $dockerImage'
-                }
+                sh 'docker logout hub.docker.com'
+                deleteDir()
             }
         }
 	}

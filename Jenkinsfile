@@ -1,5 +1,5 @@
 #!/groovy
-def dockerImageRepo = 'anandtest/protest'
+def dockerImageRepo = 'gatewaytech/gatewaytech-ui'
 def dockerImageTag
 def dockerImage
 def dockerRegistry = 'hub.docker.com'
@@ -26,11 +26,14 @@ pipeline
 				checkout scm
 				script 
 				{
-					dockerImageTag="$BUILD_NUMBER"
+
+					dockerImageTag="$dockerImageRepo"+":"+"$BUILD_NUMBER"
+					echo "Created a Tag for uploading an Image to Registry based on Build_Number : $dockerImageTag"
+
 				}
 			}
 		}
-		
+
 		stage('Build the Image')
 		{
 			steps
@@ -38,14 +41,14 @@ pipeline
 				script 
 				{
 					echo 'Starting the Image Building'
-					dockerImage = docker.build "${dockerImageRepo}"
+					dockerImage = docker.build "${dockerImageTag}"
 					sh 'docker images'
 					sh 'docker ps -a'
 					echo "$dockerImage"
 				}
 			}
 		}
-		
+
 		stage('Publish Docker Images to DockerHub')
 		{
 			steps
@@ -60,17 +63,13 @@ pipeline
 				}
 			}
 		}
-		
-		stage('Remote Deployment')
-		{
-			steps
-			{
-				script
-				{
-					// sh '''ansible-playbook remote-deploy.yml --key-file /tmp/anand.pem'''
-					sh ' sh deploy.sh '
-				}
-			}
-		}
+
+		post {
+        always {
+            script { 
+                	sh 'docker rmi -f $dockerImage'
+                }
+            }
+        }
 	}
 }

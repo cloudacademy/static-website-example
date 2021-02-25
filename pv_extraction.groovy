@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage("Desplay the Env variables") {
             steps {
-            	echo $hostname
+		    echo ${hostname}
             }
         }
     }

@@ -1,3 +1,11 @@
+
+
+def dbname(){
+    if ($ENVIRONMENT == 'INT'){
+        echo "Function Working"
+    }
+}
+
 pipeline {
     agent any
     options {
@@ -10,6 +18,7 @@ pipeline {
             steps {
 		    script{
 		    	echo "Hello World"
+                dbname()
 		    } 
             }
         }

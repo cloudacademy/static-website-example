@@ -24,11 +24,6 @@ pipeline {
 		    	dbhostname = "${dbname()}"
 		    	echo "the DataBase is: ${dbhostname}"
                 // dbname()
-                sh '''
-                    cat <<EOF > se-variants-extractor.yml
-                    apiVersion: ${dbhostname}
-                    kind: Job
-                '''.stripIndent()
 		    } 
             }
         }

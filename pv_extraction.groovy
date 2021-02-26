@@ -1,7 +1,3 @@
-def envName = params.ENVIRONMENT
-if (envName == "INT") {
-	hostname = "AnandReddy"
-} 
 pipeline {
     agent any
     options {
@@ -13,7 +9,7 @@ pipeline {
         stage("Desplay the Env variables") {
             steps {
 		    script{
-		    	echo ${hostname}
+		    	echo "The branch is $env.BARNCH_NAME"
 		    } 
             }
         }

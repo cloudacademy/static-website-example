@@ -1,4 +1,5 @@
 def dbhostname
+def destdb
 def dbname(){
     if (params.ENVIRONMENT == 'INT'){
         return 'lpesipo1000int.schneider-electric.com:1521:pesv2int'
@@ -8,6 +9,12 @@ def dbname(){
         return 'lpesipo1002prd.schneider-electric.com:1521:pesv2prd'
     }
 }
+def dbdestdb(){
+    if (params.ENVIRONMENT == 'INT'){
+        destdb = 'kaasmongo'
+    }
+}
+
 
 pipeline {
     agent any
@@ -24,6 +31,7 @@ pipeline {
 		    	dbhostname = "${dbname()}"
 		    	echo "the DataBase is: ${dbhostname}"
                 // dbname()
+                echo "The Destination DB is : ${destdb}"
 		    } 
             }
         }

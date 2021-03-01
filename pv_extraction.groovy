@@ -33,7 +33,10 @@ pipeline {
 		    script{
 		    	echo "Hello World"
 		    	def info="${dbname()}"
-			echo info    
+			def json = new groovy.json.JsonBuilder()
+			json rootKey: info
+			println groovy.json.JsonOutput.prettyPrint(json.toString())    
+    			//echo info    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

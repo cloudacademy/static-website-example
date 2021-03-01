@@ -51,7 +51,10 @@ pipeline {
 		    	def info="${dbname()}"
 			//def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))  
 			echo info    
-			echo info.getClass()  
+			def jsonSlurper = new JsonSlurper()
+     			def object = jsonSlurper.parseText(info) 
+			echo object    
+			echo object.db_name    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

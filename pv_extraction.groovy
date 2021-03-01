@@ -35,7 +35,7 @@ pipeline {
 		    	dbhostname = "${dbname()}"
 		    	//echo "the DataBase is: ${dbhostname["db_name"]}"
 			for (element in dbhostname) {
-    				echo "${element.key} ${element.value}"
+    				echo "${element}"
 			}
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

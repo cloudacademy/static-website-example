@@ -4,9 +4,9 @@ import groovy.json.JsonSlurper
 def dbhostname
 def destdb
 def dbname(){
-    def env_info=[db_name:"",credentials_id:"",user_name:"","password":""]	
+    def env_info=["db_name":"","credentials_id":"","user_name":"","password":""]	
     if (params.ENVIRONMENT == 'INT'){
-	env_info[db_name] = "int_database"  
+	env_info["db_name"] = "int_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString()) 

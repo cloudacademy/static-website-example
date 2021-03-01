@@ -10,22 +10,22 @@ def dbname(){
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString()) 
-	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))   
-	return env_info   
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))   
+	//return env_info   
     }else if (params.ENVIRONMENT == 'PPR'){
         env_info["db_name"] = "PPR_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info)) 
-	return env_info    
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info)) 
+	//return env_info    
     }else if (params.ENVIRONMENT == 'PRD'){
       	env_info["db_name"] = "PRD_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
-	return env_info    
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
+	//return env_info    
     }
 }
 def dbdestdb(){
@@ -48,9 +48,10 @@ pipeline {
 		    script{
 		    	echo "Hello World"
 			//Map info="${dbname()}"    
-		    	//def info="${dbname()}"
-			Map info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))    
+		    	def info="${dbname()}"
+			//def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))  
 			echo info    
+			echo type(info)    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

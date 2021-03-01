@@ -51,7 +51,7 @@ pipeline {
 		    	def info="${dbname()}"
 			//def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))  
 			echo info    
-			echo type(info)    
+			echo info.getClass()  
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

@@ -9,19 +9,22 @@ def dbname(){
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString()) 
-	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))    
+	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))   
+	return env_info   
     }else if (params.ENVIRONMENT == 'PPR'){
         env_info["db_name"] = "PPR_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	 return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))    
+	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info)) 
+	return env_info    
     }else if (params.ENVIRONMENT == 'PRD'){
       	env_info["db_name"] = "PRD_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
+	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
+	return env_info    
     }
 }
 def dbdestdb(){

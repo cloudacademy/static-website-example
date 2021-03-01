@@ -53,7 +53,7 @@ pipeline {
 			echo info    
 			def jsonSlurper = new JsonSlurper()
      			def object = jsonSlurper.parseText(info) 
-			echo object    
+			echo object.toString()    
 			echo object.db_name    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()

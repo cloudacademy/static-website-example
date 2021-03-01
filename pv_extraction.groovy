@@ -59,6 +59,8 @@ pipeline {
 		    script{
 			    def info="${dbname()}"
 			    jsonSlurper = new JsonSlurper() 	
+			    
+			    @NonCPS
 			    def info_object = jsonSlurper.parseText(info)
 			    credentials_id = info_object.credentials_id
 			    echo credentials_id

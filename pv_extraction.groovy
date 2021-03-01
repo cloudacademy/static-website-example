@@ -52,9 +52,9 @@ pipeline {
         stage("Display the Env variables") {
             steps {
 		    script{
-			    info="${dbname()}"
-			    credentials_id="${getJsonProperty(info,"credential_id")}"
-			    echo credentials_id
+			    def info="${dbname()}"
+			    def credentials_id="${getJsonProperty(info,"credential_id")}"
+			    echo "${credentials_id}"
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 		  

@@ -7,25 +7,13 @@ def dbname(){
     def env_info=["db_name":"","credentials_id":"","user_name":"","password":""]	
     if (params.ENVIRONMENT == 'INT'){
 	env_info["db_name"] = "int_database"  
-	//def json = new groovy.json.JsonBuilder()
-	//json rootKey: env_info     
-        //return groovy.json.JsonOutput.prettyPrint(json.toString()) 
-	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))   
-	//return env_info   
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
     }else if (params.ENVIRONMENT == 'PPR'){
         env_info["db_name"] = "PPR_database"  
-	//def json = new groovy.json.JsonBuilder()
-	//json rootKey: env_info     
-        //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info)) 
-	//return env_info    
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
     }else if (params.ENVIRONMENT == 'PRD'){
       	env_info["db_name"] = "PRD_database"  
-	//def json = new groovy.json.JsonBuilder()
-	//json rootKey: env_info     
-        //return groovy.json.JsonOutput.prettyPrint(json.toString())
-	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
-	//return env_info    
+	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))        
     }
 }
 def dbdestdb(){
@@ -46,18 +34,14 @@ pipeline {
         stage("Display the Env variables") {
             steps {
 		    script{
-		    	echo "Hello World"
-			//Map info="${dbname()}"    
+		  
 		    	def info="${dbname()}"
-			//def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))  
-			echo info    
 			def jsonSlurper = new JsonSlurper()
      			def object = jsonSlurper.parseText(info) 
-			echo object.toString()    
-			echo object.db_name    
-		    	//echo "the DataBase is: ${env_info["db_name"]}"
+			echo info_object.toString()        
+		    	echo "the DataBase is: ${info_object.db_name}"
 			// dbname()
-			echo "The Destination DB is : ${destdb}"
+			//echo "The Destination DB is : ${destdb}"
 		    } 
             }
         }

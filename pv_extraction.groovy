@@ -33,16 +33,6 @@ def dbdestdb(){
     }
 }
 
-def get(key){
-    echo "inside getMethod" 	
-    info="${dbname()}"
-    jsonSlurper = new JsonSlurper()
-    info_object = jsonSlurper.parseText(info)
-    echo key
-    echo info_object."$key"
-    return info_object."$key"
-}
-
 def getJsonProperty(String jsonText,String locator){
     echo "inside getJsonProperty"		
     def slurper = new JsonSlurper()
@@ -71,15 +61,15 @@ pipeline {
 				//String credential_id = info_object.credentials_id.toString()
 			    	info="${dbname()}"
 			    	echo "${getJsonProperty(info,"credential_id")}"
-				echo "${get("credential_id")}"
-				withCredentials([usernamePassword(credentialsId: get(credential_id), passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
+				withCredentials([usernamePassword(credentialsId: "${getJsonProperty(info,"credential_id")}", passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 		  
 						
-						echo info_object.toString()
-						echo "the DataBase is: ${info_object.credentials_id}"
-						echo "the DataBase is: ${CATA_PASS}" 
-						echo "the DataBase is: ${CATA_USER}"     
+						//echo info_object.toString()
+						//echo "the DataBase is: ${info_object.credentials_id}"
+						//echo "the DataBase is: ${CATA_PASS}" 
+						//echo "the DataBase is: ${CATA_USER}"  
+					echo "inside with credentials"
 					
 				}
 		    } 

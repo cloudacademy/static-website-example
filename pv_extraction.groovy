@@ -59,10 +59,10 @@ pipeline {
 		    script{
 			    def info="${dbname()}"
 			    jsonSlurper = new JsonSlurper() 	
-			    
-			    @NonCPS
 			    def info_object = jsonSlurper.parseText(info)
-			    credentials_id = info_object.credentials_id
+			    def m = [:]
+    			    m.putAll(info_object)
+			    credentials_id = m["credentials_id"]
 			    echo credentials_id
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{

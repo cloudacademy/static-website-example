@@ -28,7 +28,7 @@ pipeline {
     }
 
     stages {
-        stage("Desplay the Env variables") {
+        stage("Display the Env variables") {
             steps {
 		    script{
 		    	echo "Hello World"

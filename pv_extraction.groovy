@@ -11,19 +11,16 @@ def dbname(){
 	env_info["credentials_id"] = "5e3e48a8-651d-48bd-813c-a3735c8af832"
 	env_info["user_name"] = "int_user_name"
 	env_info["password"] = "int_password"    
-	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
     }else if (params.ENVIRONMENT == 'PPR'){
         env_info["db_name"] = "ppr_database"
 	env_info["credentials_id"] = "ppr_credentials_id"
 	env_info["user_name"] = "ppr_user_name"
-	env_info["password"] = "ppr_password"  
-	//return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
+	env_info["password"] = "ppr_password"       
     }else if (params.ENVIRONMENT == 'PRD'){
       	env_info["db_name"] = "prd_database"
 	env_info["credentials_id"] = "prd_credentials_id"
 	env_info["user_name"] = "prd_user_name"
-	env_info["password"] = "prd_password"   
-//	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))        
+	env_info["password"] = "prd_password"    
     }
     return JsonOutput.prettyPrint(JsonOutput.toJson(env_info)) 
 }
@@ -55,9 +52,6 @@ pipeline {
         stage("Display the Env variables") {
             steps {
 		    script{
-                
-				//def info_object =new groovy.json.JsonSlurperClassic().parseText(info)
-				//String credential_id = info_object.credentials_id.toString()
 			    info="${dbname()}"
 			    credentials_id="${getJsonProperty(info,"credential_id")}"
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])

@@ -61,7 +61,7 @@ pipeline {
      			    def info_object = jsonSlurper.parseText(info) 
 			    credentials_id = info_object.credentials_id
 			    echo credentials_id
-			    withCredentials([[$class: 'StringBinding',usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')]])
+			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 		  
 						

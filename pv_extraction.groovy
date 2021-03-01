@@ -44,7 +44,7 @@ pipeline {
 		    script{
 		    	echo "Hello World"
 		    	def info="${dbname()}"
-			echo info    
+			echo info.db_name    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

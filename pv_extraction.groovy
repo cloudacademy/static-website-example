@@ -33,8 +33,7 @@ def dbdestdb(){
     }
 }
 
-def getJsonProperty(String jsonText,String locator){
-    echo "inside getJsonProperty"		
+def getJsonProperty(String jsonText,String locator){		
     def slurper = new JsonSlurper()
     def result = slurper.parseText(jsonText)
     println("responseObject:"+result)
@@ -60,8 +59,8 @@ pipeline {
 				//def info_object =new groovy.json.JsonSlurperClassic().parseText(info)
 				//String credential_id = info_object.credentials_id.toString()
 			    	info="${dbname()}"
-			    	echo "${getJsonProperty(info,"credential_id")}"
-				withCredentials([usernamePassword(credentialsId: "${getJsonProperty(info,"credential_id")}", passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
+			    	credentials_id="${getJsonProperty(info,"credential_id")}"
+				withCredentials([usernamePassword(credentialsId: 'credentials_id', passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 		  
 						

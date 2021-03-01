@@ -53,6 +53,7 @@ pipeline {
             steps {
 		    script{
 			    def info="${dbname()}"
+			    echo "${getJsonProperty(info,"credential_id")}"
 			    def credentials_id="${getJsonProperty(info,"credential_id")}"
 			    echo "${credentials_id}"
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])

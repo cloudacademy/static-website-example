@@ -43,6 +43,17 @@ def get(key){
     return info_object."$key"
 }
 
+def getJsonProperty(String jsonText,String locator){
+    echo "inside getJsonProperty"		
+    def slurper = new JsonSlurper()
+    def result = slurper.parseText(jsonText)
+    println("responseObject:"+result)
+    Binding binding = new Binding();
+    binding.setVariable("result", result);
+    GroovyShell shell = new GroovyShell(binding)
+    return shell.evaluate("result."+locator)
+}
+
 
 pipeline {
     agent any
@@ -58,6 +69,8 @@ pipeline {
                 
 				//def info_object =new groovy.json.JsonSlurperClassic().parseText(info)
 				//String credential_id = info_object.credentials_id.toString()
+			    	info="${dbname()}"
+			    	echo "${getJsonProperty(info,"credential_id")}"
 				echo "${get("credential_id")}"
 				withCredentials([usernamePassword(credentialsId: get(credential_id), passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{

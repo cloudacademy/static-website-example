@@ -49,7 +49,7 @@ pipeline {
 		    	echo "Hello World"
 			//Map info="${dbname()}"    
 		    	//def info="${dbname()}"
-			def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))    
+			Map info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))    
 			echo info    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()

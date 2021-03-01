@@ -63,7 +63,7 @@ pipeline {
             steps {
 		    script{
 			    def info="${dbname()}"
-			    def info_
+			    def info_object = "${parseInfo(info)}"
 			    credentials_id = info_object.credentials_id
 			    echo credentials_id
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])

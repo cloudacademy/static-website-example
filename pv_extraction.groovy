@@ -1,14 +1,16 @@
 def dbhostname
 def destdb
-def dbname(){
-    def env_info=[db_name='',credentials_id='',user_name='',password='']	
+def dbname(){	
     if (params.ENVIRONMENT == 'INT'){
+	def env_info=[db_name='',credentials_id='',user_name='',password='']
 	env_info["db_name"] = 'int_database'        
         return env_info
     }else if (params.ENVIRONMENT == 'PPR'){
+	def env_info=[db_name='',credentials_id='',user_name='',password='']
         env_info["db_name"] = 'PPR_database'        
         return env_info
     }else if (params.ENVIRONMENT == 'PRD'){
+	def env_info=[db_name='',credentials_id='',user_name='',password='']    
         env_info["db_name"] = 'PRD_database'        
         return env_info
     }

@@ -31,6 +31,12 @@ def dbdestdb(){
     }
 }
 
+@NonCPS
+def parseInfo(info){
+    jsonSlurper = new JsonSlurper()
+    return jsonSlurper.parseText(info) 	
+}
+
 /*
 def getJsonProperty(String jsonText,String locator){		
     def slurper = new JsonSlurper()
@@ -57,8 +63,7 @@ pipeline {
             steps {
 		    script{
 			    def info="${dbname()}"
-			    def jsonSlurper = new JsonSlurper()
-     			    def info_object = jsonSlurper.parseText(info) 
+			    def info_
 			    credentials_id = info_object.credentials_id
 			    echo credentials_id
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])

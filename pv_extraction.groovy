@@ -1,16 +1,14 @@
 def dbhostname
 def destdb
 def dbname(){	
+    def env_info=[db_name='',credentials_id='',user_name='',password='']	
     if (params.ENVIRONMENT == 'INT'){
-	def env_info=[db_name='',credentials_id='',user_name='',password='']
 	env_info["db_name"] = 'int_database'        
         return env_info
     }else if (params.ENVIRONMENT == 'PPR'){
-	def env_info=[db_name='',credentials_id='',user_name='',password='']
         env_info["db_name"] = 'PPR_database'        
         return env_info
     }else if (params.ENVIRONMENT == 'PRD'){
-	def env_info=[db_name='',credentials_id='',user_name='',password='']    
         env_info["db_name"] = 'PRD_database'        
         return env_info
     }
@@ -35,7 +33,7 @@ pipeline {
 		    script{
 		    	echo "Hello World"
 		    	dbhostname = "${dbname()}"
-		    	echo "the DataBase is: ${dbhostname["db_name"]}"
+		    	echo "the DataBase is: ${dbhostname}"
                 // dbname()
                 echo "The Destination DB is : ${destdb}"
 		    } 

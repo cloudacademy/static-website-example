@@ -1,5 +1,6 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
+import com.cloudbees.groovy.cps.NonCPS
 
 
 def dbhostname
@@ -30,6 +31,7 @@ def dbdestdb(){
     }
 }
 
+/*
 def getJsonProperty(String jsonText,String locator){		
     def slurper = new JsonSlurper()
     def result = slurper.parseText(jsonText)
@@ -40,6 +42,7 @@ def getJsonProperty(String jsonText,String locator){
     echo  shell.evaluate("result."+locator)
     return shell.evaluate("result."+locator)
 }
+*/
 
 
 pipeline {
@@ -54,9 +57,11 @@ pipeline {
             steps {
 		    script{
 			    def info="${dbname()}"
-			    def credentials_id="${getJsonProperty(info,"credential_id")}"
-			    echo "${credentials_id}"
-			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
+			    def jsonSlurper = new JsonSlurper()
+     			    def info_object = jsonSlurper.parseText(info) 
+			    credentials_id = info_object.credentials_id
+			    echo credentials_id
+			    withCredentials([[$class: 'StringBinding',usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')]])
 				{
 		  
 						

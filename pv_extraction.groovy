@@ -3,10 +3,10 @@ import groovy.json.JsonSlurper
 
 def dbhostname
 def destdb
-def Map dbname(){
-    def env_info=["db_name":"","credentials_id":"","user_name":"","password":""]	
+def dbname(){
+    def env_info=[db_name:"",credentials_id:"",user_name:"","password":""]	
     if (params.ENVIRONMENT == 'INT'){
-	env_info["db_name"] = "int_database"  
+	env_info[db_name] = "int_database"  
 	//def json = new groovy.json.JsonBuilder()
 	//json rootKey: env_info     
         //return groovy.json.JsonOutput.prettyPrint(json.toString()) 
@@ -47,9 +47,9 @@ pipeline {
             steps {
 		    script{
 		    	echo "Hello World"
-			Map info="${dbname()}"    
+			//Map info="${dbname()}"    
 		    	//def info="${dbname()}"
-			//def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))    
+			def info=JsonOutput.prettyPrint(JsonOutput.toJson("${dbname()}"))    
 			echo info    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()

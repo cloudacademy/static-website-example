@@ -34,6 +34,7 @@ def dbdestdb(){
 }
 
 def get(key){
+    echo "inside getMethod" 	
     info="${dbname()}"
     jsonSlurper = new JsonSlurper()
     info_object = jsonSlurper.parseText(info)

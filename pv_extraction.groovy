@@ -58,7 +58,7 @@ pipeline {
                 
 				//def info_object =new groovy.json.JsonSlurperClassic().parseText(info)
 				//String credential_id = info_object.credentials_id.toString()
-				echo "${get(credential_id)}"
+				echo "${get("credential_id")}"
 				withCredentials([usernamePassword(credentialsId: get(credential_id), passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 		  

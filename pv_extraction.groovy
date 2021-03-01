@@ -37,7 +37,7 @@ pipeline {
 		  
 		    	def info="${dbname()}"
 			def jsonSlurper = new JsonSlurper()
-     			def object = jsonSlurper.parseText(info) 
+     			def info_object = jsonSlurper.parseText(info) 
 			echo info_object.toString()        
 		    	echo "the DataBase is: ${info_object.db_name}"
 			// dbname()

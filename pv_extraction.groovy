@@ -33,9 +33,7 @@ pipeline {
 		    script{
 		    	echo "Hello World"
 		    	def info="${dbname()}"
-			for (def key in info.keySet()) {
-  				println "key = ${key}, value = ${info[key]}"
-			}    
+			echo info    
 		    	//echo "the DataBase is: ${env_info["db_name"]}"
 			// dbname()
 			echo "The Destination DB is : ${destdb}"

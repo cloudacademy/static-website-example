@@ -40,6 +40,9 @@ pipeline {
      			def info_object = jsonSlurper.parseText(info) 
 			echo info_object.toString()        
 		    	echo "the DataBase is: ${info_object.db_name}"
+			echo "the DataBase is: ${info_object.credentials_id}"
+			echo "the DataBase is: ${info_object.user_name}" 
+			echo "the DataBase is: ${info_object.password}"     
 			// dbname()
 			//echo "The Destination DB is : ${destdb}"
 		    } 

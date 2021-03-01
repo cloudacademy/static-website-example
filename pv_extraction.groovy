@@ -1,12 +1,21 @@
 def dbhostname
 def destdb
 def dbname(){
+    def env_info={
+		db_name='',
+		credentials_id='',
+		user_name='',
+		password=''
+	}	
     if (params.ENVIRONMENT == 'INT'){
-        return 'lpesipo1000int.schneider-electric.com:1521:pesv2int'
+	env_info.db_name = 'int_database'        
+        return env_info
     }else if (params.ENVIRONMENT == 'PPR'){
-        return 'lpesipo1009ppr.schneider-electric.com:1521:pesv2ppr'
+        env_info.db_name = 'PPR_database'        
+        return env_info
     }else if (params.ENVIRONMENT == 'PRD'){
-        return 'lpesipo1002prd.schneider-electric.com:1521:pesv2prd'
+        env_info.db_name = 'PRD_database'        
+        return env_info
     }
 }
 def dbdestdb(){

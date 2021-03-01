@@ -39,8 +39,8 @@ def get(key){
     jsonSlurper = new JsonSlurper()
     info_object = jsonSlurper.parseText(info)
     echo key
-    echo info_object.'key'
-    return info_object.'key'
+    echo info_object[key]
+    return info_object[key]
 }
 
 

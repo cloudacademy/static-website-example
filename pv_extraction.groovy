@@ -6,13 +6,22 @@ def destdb
 def dbname(){
     def env_info=["db_name":"","credentials_id":"","user_name":"","password":""]	
     if (params.ENVIRONMENT == 'INT'){
-	env_info["db_name"] = "int_database"  
+	env_info["db_name"] = "int_database"
+	env_info["credentials_id"] = "int_credentials_id"
+	env_info["user_name"] = "int_user_name"
+	env_info["password"] = "int_password"    
 	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
     }else if (params.ENVIRONMENT == 'PPR'){
-        env_info["db_name"] = "PPR_database"  
+        env_info["db_name"] = "ppr_database"
+	env_info["credentials_id"] = "ppr_credentials_id"
+	env_info["user_name"] = "ppr_user_name"
+	env_info["password"] = "ppr_password"  
 	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))     
     }else if (params.ENVIRONMENT == 'PRD'){
-      	env_info["db_name"] = "PRD_database"  
+      	env_info["db_name"] = "prd_database"
+	env_info["credentials_id"] = "prd_credentials_id"
+	env_info["user_name"] = "prd_user_name"
+	env_info["password"] = "prd_password"   
 	return JsonOutput.prettyPrint(JsonOutput.toJson(env_info))        
     }
 }

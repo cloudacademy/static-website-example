@@ -39,11 +39,12 @@ pipeline {
 		    script{
 			    def info="${dbname()}"
 			    def props = readJSON text: info, returnPojo: true
-                credentials_id=props['credentials_id']
-                db_name=props['db_name']
+                	    credentials_id=props['credentials_id']
+                            db_name=props['db_name']
+			    echo db_name
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{ 
-					echo "client id : ${credentials_id}"
+					echo "db name : ${db_name}"
                     sh '''
                                   cat <<EOF > se-variants-extractor.yml
                                   apiVersion: batch/v1
@@ -61,7 +62,7 @@ pipeline {
                                         containers:
                                         - args:
                                           - --spring.data.mongodb.host=se-variants-mongo
-                                          - --spring.datasource.url=jdbc:oracle:thin:@${db_name}
+                                          - --spring.datasource.url=jdbc:oracle:thin:@db_name
                                           - --spring.datasource.username=$CATA_USER
                                           - --spring.datasource.password=$CATA_PASS
                                           command:

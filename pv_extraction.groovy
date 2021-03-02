@@ -1,7 +1,4 @@
 import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
-import com.cloudbees.groovy.cps.NonCPS
-
 
 def dbhostname
 def destdb
@@ -31,21 +28,6 @@ def dbdestdb(){
     }
 }
 
-
-/*
-def getJsonProperty(String jsonText,String locator){		
-    def slurper = new JsonSlurper()
-    def result = slurper.parseText(jsonText)
-    println("responseObject:"+result)
-    Binding binding = new Binding();
-    binding.setVariable("result", result);
-    GroovyShell shell = new GroovyShell(binding)
-    echo  shell.evaluate("result."+locator)
-    return shell.evaluate("result."+locator)
-}
-*/
-
-
 pipeline {
     agent any
     options {
@@ -58,20 +40,10 @@ pipeline {
             steps {
 		    script{
 			    def info="${dbname()}"
-			    jsonSlurper = new JsonSlurper() 	
-			    def info_object = jsonSlurper.parseText(info)
-			    def m = [:]
-    			    m.putAll(info_object)
-			    credentials_id = m["credentials_id"]
-			    echo credentials_id
+			    def props = readJSON text: info, returnPojo: true
+                	    credentials_id=props['credentials_id']
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
-				{
-		  
-						
-						//echo info_object.toString()
-						//echo "the DataBase is: ${info_object.credentials_id}"
-						//echo "the DataBase is: ${CATA_PASS}" 
-						//echo "the DataBase is: ${CATA_USER}"  
+				{ 
 					echo "inside with credentials"
 					
 				}

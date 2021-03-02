@@ -99,5 +99,12 @@ pipeline {
 		    } 
             }
         }
+	    stage("File") {
+            steps {
+				script{
+					sh 'cat se-variants-extractor.yml'
+				}
+			}
+        }
     }
 }

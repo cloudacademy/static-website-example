@@ -42,9 +42,13 @@ pipeline {
 			    def info="${dbname()}"
 			    def props = readJSON text: info, returnPojo: true
                 	    credentials_id=props['credentials_id']
-			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
+			    username=props['user_name']
+			    password=props['password']
+			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: password, usernameVariable: username)])
 				{ 
-					echo "inside with credentials"
+					echo "client id : ${credentials_id}"
+					echo "password :  ${password}"
+					echo "username : ${username}"
 					
 				}
 		    } 

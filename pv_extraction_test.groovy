@@ -99,12 +99,5 @@ pipeline {
 		    } 
             }
         }
-	    stage("Display the Env variables") {
-            steps {
-		    script{
-				cat se-variants-extractor.yml
-		    } 
-            }
-        }
     }
 }

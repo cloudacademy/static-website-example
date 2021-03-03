@@ -39,8 +39,9 @@ pipeline {
 		    script{
 			    def info="${dbname()}"
 			    def props = readJSON text: info, returnPojo: true
-                	    credentials_id=props['credentials_id']
-                            db_name=props['db_name']
+                credentials_id=props['credentials_id']
+                db_name=props['db_name']
+			    db_name=db_name.replace('\n','')
 			    echo db_name
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{ 
@@ -62,7 +63,7 @@ pipeline {
                                         containers:
                                         - args:
                                           - --spring.data.mongodb.host=se-variants-mongo
-                                          - --spring.datasource.url=jdbc:oracle:thin:@`db_name`
+                                          - --spring.datasource.url=jdbc:oracle:thin:@'''+db_name+'''``
                                           - --spring.datasource.username=$CATA_USER
                                           - --spring.datasource.password=$CATA_PASS
                                           command:

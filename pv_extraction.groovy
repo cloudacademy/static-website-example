@@ -45,7 +45,7 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: credentials_id, passwordVariable: 'CATA_PASS', usernameVariable: 'CATA_USER')])
 				{
 				    if (true) {
-					echo db_name    
+					    echo "${db_name}"    
                             sh '''
                                 cat <<EOF > se-variants-extractor.yml
                                 apiVersion: batch/v1

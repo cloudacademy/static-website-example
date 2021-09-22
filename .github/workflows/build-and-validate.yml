@@ -28,12 +28,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Build and test
-    - run: | 
+      run: | 
         npm ci
         npm run build --if-present
         npm test
     - name: Prepare production artifacts
-    - run:
+      run:
         script/build-prod.sh
         rm -rf script
     - name: Archive production artifacts

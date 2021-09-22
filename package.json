@@ -1,0 +1,24 @@
+{
+  "name": "static-website-example",
+  "version": "1.0.0",
+  "description": "Static Website Example for DevOps demo",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "script/npm-build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Norbitor/static-website-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Norbitor/static-website-example/issues"
+  },
+  "homepage": "https://github.com/Norbitor/static-website-example#readme",
+  "devDependencies": {
+    "minify": "^7.1.0",
+    "node-sass": "^6.0.1"
+  }
+}
